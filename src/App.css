@@ -1,38 +1,332 @@
-.App {
+/* White color #FCF3F3 */
+/* Green color #2ecc71 */
+/* Dark Grey color #555 */
+/* Light Blue color #24b5da */
+/* Blue color #48c0df */
+/* Like pink color "#e91e63" */
+
+/*--------------------------------*/
+/*BASIC SETUP*/
+/*--------------------------------*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body{
+  background-color: #FCF3F3;
+  color: #555;
+  font-weight: 300;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/*--------------------------------*/
+/*REUSABLE COMPONENETS*/
+/*--------------------------------*/
+h1,
+h2,
+h3 {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin-top: 3%;
+  margin-bottom: 20px;
+  color: #24b5da;
+  font-size: 240%;
+  word-spacing: 4px;
+  letter-spacing: 1px;
+}
+
+
+/*--------------------------------*/
+/*App Component - Home */
+/*--------------------------------*/
+#root {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(./images/music.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+.MyAccount,
+.Logout,
+.Songs,
+.Song {
+  background-color: #FCF3F3;
+  color: #48c0df;
+  height: 100vh;
+  padding: 10% 5%;
+}
+
+/* Home */
+.Home {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.Home h3 {
+  color: #24b5da;
+  margin-bottom: 2%;
+}
+
+
+/* NavBar */
+.main-nav {
+  float: right;
+  list-style:none;
+  margin-top: 55px;
+  margin-right: 25px;
+}
+
+.main-nav li {
+  display: inline-block;
+  margin-left: 40px;
+}
+
+.main-nav li a:link,
+.main-nav li a:visited {
+  padding: 8px 0;
+  color:#48c0df;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 90%;
+  border-bottom:2px solid transparent;
+  transition: border-bottom 0.2s;
+
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+  border-bottom:2px solid #24b5da;
+}
+
+/* Mobile navi  */
+.mobile-nav-icon {
+  float: right;
+  margin-top: 30px;
+  margin-right: 15px;
+  cursor: pointer;
+  display: none;
+  color: #24b5da;
+}
+
+
+/* Home  */
+.Home {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Login */
+.Login,
+.Signup {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(./images/music.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+.Login form,
+.Signup form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin:2% auto;
+  padding: 2%;
+  background-color: transparent;
+  width: 80%;
+  height: 200px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Login form section,
+.Signup form section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.Login .closeBtn,
+.Signup .closeBtn {
+  position: absolute;
+  top: 75%;
+  right: 25%;
+  color: #FCF3F3;
+  background-color: #24b5da;
+}
+
+
+/*----BUTTONS-----*/
+button {
+  background: none;
+  border: none;
+}
+
+.btn:link,
+.btn:visited,
+input.btn {
+  display: inline-block;
+  padding: 10px 30px;
+  font-weight: 300;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 200px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.btn-full:link,
+.btn-full:visited,
+input.btn-full:link,
+input.btn-full:visited {
+  background-color: #48c0df;
+  border: 1px solid #48c0df;
+  color: #FCF3F3;
+  margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+  border: 1px solid #48c0df;
+  color: #48c0df;
+}
+
+.btn:hover,
+.btn:active,
+input.btn:hover,
+input.btn:active {
+  background-color: #48c0df;
+}
+
+.btn-full:hover,
+.btn-full:active
+input.btn-full:hover,
+input.btn-full:active {
+  border: 1px solid #48c0df;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+  border: 1px solid #48c0df;
+  color: #FCF3F3;
+}
+
+/*----RECIPES-----*/
+/* No background image */
+.Songs {
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  background-color: #FCF3F3;
+  height: 100vh;
+}
+
+/*----RECIPE-----*/
+.Hand h3 {
+  margin-top: 2%;
+  margin-bottom: 1%;
+  color: #e91e63;
+}
+
+/*----USER (MY ACCOUNT)-----*/
+.MyAccount h1 {
+  color: #555;
+}
+
+.MyAccount h2 {
+  margin-bottom: 2%;
+}
+
+.MyAccount a:link,
+.MyAccount a:visited {
+  color: #555;
+}
+
+.MyAccount a:hover,
+.MyAccount a:active {
+  color:#48c0df;
+}
+
+/* Logout */
+.logoutInput {
+  border: none;
+  background-color: #FCF3F3;
+  color: #555;
+  font-size: 1.25rem;
+  position: absolute;
+  width: 1140px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logoutInput[type=submit]:hover,
+.logoutInput[type=submit]:active {
+  border:  none;
+  outline: none;
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media only screen and (max-width: 745px) {
+  html, body { font-size: 18px; }
+  h1 { font-size: 180%; }
+  h2 { font-size: 150%}
+
+  input.btn.btn-ghost,
+  input.btn.btn-full {
+    width: 100%;
+    margin-top: 2%;
+    margin-left: 0;
+  }
+
+  .main-nav {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 2%;
+    text-align: center;
+    font-size: 18px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+@media only screen and (max-width: 450px) {
+  h1 { font-size: 150%; }
+  h2 { font-size: 120%}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .main-nav {
+    float: right;
+    text-align: right;
+    padding-top: 30px;
+    padding-right: 20px;
+    font-size: 16px;
   }
-  to {
-    transform: rotate(360deg);
+  .main-nav li {
+    display: block;
+  }
+
+  .main-nav li a:link,
+  .main-nav li a:visited {
+    padding: 0;
+  }
+
+  .MyAccount,
+  .Hands {
+    padding-top: 30%;
   }
 }
