@@ -1,6 +1,6 @@
 import {resetSignupForm} from "./signupForm";
 import {setCurrentUser} from "./currentUsers";
-
+const baseURL ="https://limitless-woodland-46121.herokuapp.com/api/v1/songs"
 export const loadingSongs = () => {
     return {
         type: 'LOADING_SONGS'
@@ -18,14 +18,15 @@ export const sendingSongs = songs => {
 
     if (songs === 0) {
         songData = null
- //   } else {
- //       songData = songs.map(song => {
-  //          return {
-  //              track: song.track,
-    //            artist: song.artist,
-     //           songId: song.id,
-     //       }
-    //    })
+    } else {
+        console.log("check this out", songs)
+        songData = songs.map(song => {
+            return {
+               track: song.track,
+                artist: song.artist,
+                songId: song.id,
+            }
+        })
     }
     return {
         type: 'FETCH_SONGS',
@@ -34,24 +35,24 @@ export const sendingSongs = songs => {
 }
 
 
-////// async
-export const fetchSongs = (state) => {
-    const API_KEY = process.env.REACT_APP_APIKEY;
-    return (dispatch) => {
-        dispatch(loadingSongs())
-        return fetch(`http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=disco&api_key=${API_KEY}&format=json`)
-            .then(resp => resp.json())
-            .then(songCollections => dispatch(sendingSongs(songCollections.songs)))
-    }
+
+export const fetchSongs = () => {
+    return fetch(baseURL).then(response => response.json()).then(json => json.data)
+
 }
 
-// search query
-export const searchSongs = (state) => {
-    const API_KEY = process.env.REACT_APP_APIKEY;
+
+export const addSongs = (data) => {
     return (dispatch) => {
-        dispatch(loadingSongs())
-        return fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=${state.artist}&track=${state.track}&format=json`)
-            .then(resp => resp.json())
-            .then(songs => dispatch(sendingSongs(songs.results)))
+        fetch('https://limitless-woodland-46121.herokuapp.com/api/v1/songs', {
+            headers:{
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(song => sendingSongs({type:'ADD_SONG', payload:song}))
     }
 }

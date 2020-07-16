@@ -6,6 +6,8 @@ export default (state = {
 }, action) => {
     //console.log("SongReducer:", action.type, action.payload)
     switch(action.type) {
+        case 'ADD_SONG':
+            return {...state, songs: action.payload}
         case 'UPLOADING_SONG':
             return {...state, song: action.payload}
 

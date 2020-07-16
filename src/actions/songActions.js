@@ -46,29 +46,17 @@ export const displayReview = (review) => {
 }
 
 
-export const songShow = (history, song) => {
-    const API_KEY = process.env.REACT_APP_APIKEY;
-    const artist = song.artist
-    const track = song.track
+export const songShow = (history) => {
 
 
     //console.log("fire on show", apiId)
     return (dispatch) => {
-        return fetch("https://lastfmdimashirokovv1.p.rapidapi.com/searchTracks", {
-            "method": "POST",
-            "headers": {
-                "x-rapidapi-host": "LastFmdimashirokovV1.p.rapidapi.com",
-                "x-rapidapi-key": "62e252c02dmsh263aff2b0ce4b96p12fd14jsnf59138f06682",
-                "content-type": "application/x-www-form-urlencoded"
-            },
-            "body": {}
-        })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        fetch('https://limitless-woodland-46121.herokuapp.com/api/v1/songs')
+            .then(resp => resp.json())
+            .then(song => {
+                dispatch(sendingSongDetails(song))
+                history.push(`/songs/${song.id}`)
+                })
     }
 }
 
@@ -76,7 +64,7 @@ export const songShow = (history, song) => {
 export const clickLike = (song, userId, review) => {
     //console.log("fire clickLike", song, userId, review)
     // const HEROKU_URL = process.env.REACT_APP_HEROKU
-    const HEROKU_URL = 'https://limitless-woodland-46121.herokuapp.com/'
+    const HEROKU_URL = 'https://limitless-woodland-46121.herokuapp.com/api/v1/songs'
     return (dispatch) => {
         const dataForRails = {
             track: song.track,
