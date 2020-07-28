@@ -165,8 +165,8 @@ h1 {
 .Login .closeBtn,
 .Signup .closeBtn {
   position: absolute;
-  top: 75%;
-  right: 25%;
+  top: 38%;
+  right: 23%;
   color: #FCF3F3;
   background-color: #24b5da;
 }

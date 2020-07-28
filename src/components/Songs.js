@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addSongs } from '../actions/songsActions.js';
+import { searchSongs } from '../actions/songsActions.js';
 import { songShow, resetFavoriteAndReview } from '../actions/songActions.js';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -50,7 +50,7 @@ class Songs extends Component {
     // Submit and search recipes from external API
     handleSubmit = event => {
         event.preventDefault()
-        this.props.addSongs(this.state)
+        this.props.searchSongs(this.state)
     }
 
 
@@ -85,4 +85,4 @@ class Songs extends Component {
     }
 }
 
-export default connect(null, { addSongs, songShow, resetFavoriteAndReview })(Songs);
+export default connect(null, { searchSongs, songShow, resetFavoriteAndReview })(Songs);

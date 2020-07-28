@@ -6,7 +6,7 @@ import { fetchSongs } from '../actions/songsActions.js';
 
 class RandomSongsContainer extends Component {
     componentDidMount(){
-        this.props.fetchSongs()
+     //   this.props.fetchSongs()
     }
 
     render() {
