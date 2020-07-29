@@ -7,27 +7,31 @@ export const loadingSongs = () => {
     }
 }
 
-// export const resetSongs = () => {
-   //  return {
-      //   type: 'RESET_SONGS'
-    // }
-// }
+export const resetSongs = () => {
+    return {
+         type: 'RESET_SONGS'
+     }
+}
 
 export const sendingSongs = songs => {
     let songData;
-    console.log("isehfo", songs)
+
     if (songs === 0) {
         songData = null
     } else {
-        songData = songs.map(song => {
+        const songsArr = Object.entries(songs)
+
+        songData = songsArr.map(song => {
             return {
-               track: song.name,
-                artist: song.artist.name,
-                songId: song.mbid,
+                track: song[0],
+                artist: song[7]
+
             }
+
         })
     }
     return {
+
         type: 'FETCH_SONGS',
         payload: songData
     }
@@ -52,6 +56,6 @@ export const searchSongs = (state) => {
         dispatch(loadingSongs())
         return fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=${'Beatles'}&track=${'cometogether'}&format=json`)
             .then(resp => resp.json())
-            .then(songs => dispatch(sendingSongs(songs)))
+            .then(songs => dispatch(sendingSongs(songs.track)))
     }
 }

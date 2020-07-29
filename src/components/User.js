@@ -16,11 +16,12 @@ class User extends Component {
     render() {
         const user = this.props.user
         const songs = this.props.songs
+        const songsArr = Object.entries(songs)
 
         let favoriteText;
          if(songs !== 0){
              favoriteText =
-                songs.map(song => <ListItem alignItems="flex-start"><ListItemAvatar></ListItemAvatar><ListItemText primary={`${song.track.substring(0,25)}...`} /><a href="#" onClick={this.handleClick} data-apiid={song.artist}>More</a><Divider variant="inset" component="li" /></ListItem>)
+                songsArr.map(song => <ListItem alignItems="flex-start"><ListItemAvatar></ListItemAvatar><ListItemText primary={`${song.track.substring(0,25)}...`} /><a href="#" onClick={this.handleClick} data-apiid={song.artist}>More</a><Divider variant="inset" component="li" /></ListItem>)
 
          } else {
              favoriteText = <p>You don't have any favorite songs yet.</p>
