@@ -19,7 +19,6 @@ export const sendingSongs = songs => {
     if (songs === 0) {
         songData = null
     } else {
-        console.log("check this out", songs)
         songData = songs.map(song => {
             return {
                track: song.track,
@@ -35,9 +34,9 @@ export const sendingSongs = songs => {
 }
 
 
-3
-export const fetchSongs = () => {
-    const API_KEY = process.env.REACT_APP_APIKEY;
+
+export const fetchSongs = (state) => {
+    const API_KEY = 'c7833c4cc8e1895c2a7d5a947fb15518';
     return (dispatch) => {
         dispatch(loadingSongs())
         return fetch(`http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=${API_KEY}&format=json}`)
@@ -48,11 +47,11 @@ export const fetchSongs = () => {
 
 
 export const searchSongs = (state) => {
-    const API_KEY = process.env.REACT_APP_APIKEY;
+    const API_KEY = 'c7833c4cc8e1895c2a7d5a947fb15518';
     return (dispatch) => {
         dispatch(loadingSongs())
-        return fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=${this.artist}&track=${this.track}&format=json`)
+        return fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=${'Beatles'}&track=${'cometogether'}&format=json`)
             .then(resp => resp.json())
-            .then(songs => dispatch(sendingSongs(songs.results)))
+            .then(songs => dispatch(sendingSongs(songs.track.name)))
     }
 }

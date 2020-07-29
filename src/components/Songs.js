@@ -68,7 +68,6 @@ class Songs extends Component {
                     Add Song:
                     <TextField type="text" name="track" value={this.state.track} placeholder="ex. Come Together" onChange={this.handleTrackChange} style={{marginLeft: "10px", marginRight: "10px"}} />
                     Add Artist:
-                    <TextField type="text" name="track" value={this.state.song} placeholder="ex. Beatles" onChange={this.handleSongChange} style={{marginLeft: "10px", marginRight: "10px"}} />
                     <TextField type="text" name="track" value={this.state.artist} placeholder="ex. Beatles" onChange={this.handleArtistChange} style={{marginLeft: "10px", marginRight: "10px"}} />
                     <input type="submit" value="Add" className="btn btn-full" style={{marginLeft: "15px"}}></input>
                 </form>
