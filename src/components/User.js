@@ -20,7 +20,7 @@ class User extends Component {
 
         let favoriteText;
          if(songs !== 0){
-             favoriteText =
+             favoriteText = // need consistent songs
                 songs.map(song => <ListItem alignItems="flex-start"><ListItemAvatar></ListItemAvatar><ListItemText primary={`${song.track.substring(0,25)}...`} /><a href="#" onClick={this.handleClick} data-apiid={song.artist}>More</a><Divider variant="inset" component="li" /></ListItem>)
 
          } else {
