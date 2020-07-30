@@ -46,24 +46,22 @@ export const displayReview = (review) => {
 }
 
 
-export const songShow = (history) => {
+export const songShow = (apiId, history) => {
 
-
-    //console.log("fire on show", apiId)
+    const API_KEY = 'c7833c4cc8e1895c2a7d5a947fb15518';
     return (dispatch) => {
-        fetch('https://limitless-woodland-46121.herokuapp.com/api/v1/songs')
+        fetch('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=${\'Beatles\'}&track=${cometogether}&format=json')
             .then(resp => resp.json())
             .then(song => {
+                console.log(song)
                 dispatch(sendingSongDetails(song))
                 history.push(`/songs/${song.id}`)
                 })
     }
 }
 
-//Click "like" button - post likes and review
+
 export const clickLike = (song, userId, review) => {
-    //console.log("fire clickLike", song, userId, review)
-    // const HEROKU_URL = process.env.REACT_APP_HEROKU
     const HEROKU_URL = 'https://limitless-woodland-46121.herokuapp.com/api/v1/songs'
     return (dispatch) => {
         const dataForRails = {
@@ -88,9 +86,8 @@ export const clickLike = (song, userId, review) => {
 }
 
 
-//Loading total number of Likes if a recipe has favorites
+
 export const loadingFavorite = (apiId) => {
-    //console.log("fire loading Favorite", apiId)
     const HEROKU_URL = 'https://limitless-woodland-46121.herokuapp.com/'
     return (dispatch) => {
         return fetch(`${HEROKU_URL}/api/v1/songs` ,{
@@ -122,5 +119,3 @@ export const loadingFavorite = (apiId) => {
             })
     }
 }
-
-// title = artist

@@ -20,7 +20,8 @@ export const loadingUserInfo = (currentUserId) => {
         })
             .then(resp => resp.json())
             .then(userData => {//console.log("userData", userData)
-                dispatch(uploadingFavorite(console.log(userData.id)))
+                console.log(userData)
+                dispatch(uploadingFavorite((userData.songs)))
             })
 
     }

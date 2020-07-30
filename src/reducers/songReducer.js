@@ -1,8 +1,8 @@
 export default (state = {
     song: null,
-    favorite: 0,
-    artists: [],
-    artist: ""
+    artist: "",
+    track: [],
+    artists: ""
 }, action) => {
     //console.log("SongReducer:", action.type, action.payload)
     switch(action.type) {
