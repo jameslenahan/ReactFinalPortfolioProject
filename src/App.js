@@ -42,7 +42,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-    const status = state.currentUsersReducer === null || state.currentUsersReducer.error ? false : true
+    const status = !(state.currentUsersReducer === null || state.currentUsersReducer.error)
     return {
         loggedin: status
     }

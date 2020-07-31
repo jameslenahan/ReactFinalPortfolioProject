@@ -11,32 +11,18 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-
 class Songs extends Component {
 
     state = {
-        song: "",
         artist: "",
-        track: ""
+        track: "",
     }
 
     componentDidMount(){
         this.props.resetFavoriteAndReview()
     }
 
-    // Search recipe by keyword that a user inputs
     handleInputChange = event => {
-        this.setState({
-            artist: event.target.value
-        })
-    }
-
-    handleTrackChange = event => {
-        this.setState({
-            track: event.target.value
-        })
-    }
-    handleArtistChange = event => {
         this.setState({
             artist: event.target.value
         })
@@ -44,10 +30,10 @@ class Songs extends Component {
 
     handleSongChange = event => {
         this.setState({
-            song: event.target.value
+            track: event.target.value
         })
     }
-    // Submit and search recipes from external API
+
     handleSubmit = event => {
         event.preventDefault()
         this.props.searchSongs(this.state)
@@ -66,18 +52,18 @@ class Songs extends Component {
 
                 <form onSubmit={this.handleSubmit} style={{margin: "6% auto"}}>
                     Add Song:
-                    <TextField type="text" name="track" value={this.state.track} placeholder="ex. Come Together" onChange={this.handleTrackChange} style={{marginLeft: "10px", marginRight: "10px"}} />
+                    <TextField type="text" name="track" value={this.state.track} placeholder="ex. Come Together" onChange={this.handleSongChange} style={{marginLeft: "10px", marginRight: "10px"}} />
                     Add Artist:
-                    <TextField type="text" name="track" value={this.state.artist} placeholder="ex. Beatles" onChange={this.handleArtistChange} style={{marginLeft: "10px", marginRight: "10px"}} />
-                    <input type="submit" value="Add" className="btn btn-full" style={{marginLeft: "15px"}}></input>
+                    <TextField type="text" name="track" value={this.state.artist} placeholder="ex. Beatles" onChange={this.handleInputChange} style={{marginLeft: "10px", marginRight: "10px"}} />
+                    <input type="submit" value="Add" className="btn btn-full" style={{marginLeft: "15px"}}/>
                 </form>
 
                 <GridList cols={2}>
-                     (state => <GridListTile artist={this.state.artist}>=<GridListTileBar track={this.state.track}  actionIcon={
-                        <IconButton onClick={() => this.handleClick(this.props.history)}>
-                            <MoreHorizIcon style={{color: "#FCF3F3"}}  />
-                        </IconButton>
-                    }></GridListTileBar></GridListTile>) : <p></p>}
+                    {this.props.songs!== null ? this.props.songs.map(song => <GridListTile key={song.songId}><GridListTileBar title={song.track}  actionIcon={
+                    <IconButton onClick={() => this.handleClick(song.songId, this.props.history)}>
+                <MoreHorizIcon style={{color: "#FCF3F3"}}/>
+                 </IconButton>
+}                   /></GridListTile>) : <p>No songs found. Please try with another keyword.</p>}
                 </GridList>
             </div>
         )

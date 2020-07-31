@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Home extends Component {
+class Home extends React.Component {
 
     render() {
         //If logged in, Log out buttton is desplay. If not, Login and Sign up button is displayed.

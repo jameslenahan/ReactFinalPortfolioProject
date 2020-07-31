@@ -23,19 +23,19 @@ class Song extends Component {
         review: ""
     }
 
-    //Loding total number of "Like"
+
     componentDidMount() {
         this.props.loadingFavorite(this.props.song.songId)
     }
 
-    //Like button
+
     handleClick = (song, userId) => {
-        //console.log("like btn:", song, userId)
+
         this.props.clickLike(song, userId, this.state.review)
     }
 
     handleInputChange = (event) => {
-        // this.props.updateReviewForm({...this.props.review, [event.target.name]: [event.target.value]})
+
         this.setState({
             review: event.target.value
         })
@@ -43,8 +43,7 @@ class Song extends Component {
 
     handleSubmit = (event, song, userId) => {
         event.preventDefault()
-        //console.log("review submit", song, userId, this.state.review, this.props.history)
-        this.props.clickLike(song, userId, this.state.review, this.props.history)
+        this.props.clickLike(song, userId, this.props.history)
         this.props.displayReview(this.state.review)
         this.setState({
             review: ""
@@ -52,15 +51,6 @@ class Song extends Component {
     }
 
     render() {
-
-        const genres = this.props.song.genres.map(ing => {
-                return (
-                    <ul key={ing.name}>
-                        <li key={ing.name}>{ing.original}: <span>{ing.amount} {ing.unit}</span></li>
-                    </ul>
-                )
-            }
-        )
 
 
         return(
@@ -80,9 +70,6 @@ class Song extends Component {
 
                 <IconButton onClick={() => this.handleClick(this.props.song, this.props.userId, this.state.review)} style={{color: "#e91e63"}}><Fab style={{backgroundColor: "#f8bbd0", color: "#e91e63"}}><FavoriteBorderIcon /></Fab><span style={{fontSize: "1.2rem"}}>&nbsp;Love:&nbsp;{this.props.favorite}</span></IconButton>
 
-                {/* Song details */}
-
-                <h3>{genres}</h3>
                 <h3>Recommended reviews:</h3>
                 {this.props.reviews.length === 0 ? <p>Write a first review!</p> : this.props.reviews.map(review => <p><IconButton><MoodIcon /></IconButton>{review.review} by {review.username}</p>)}
 
@@ -99,6 +86,9 @@ class Song extends Component {
                                }}/>
                     <Button type="submit" size="small" style={{color: "#e91e63"}} variant="outlined">Add Review</Button>
                 </form>
+
+                <button onClick={this.props.history.goBack}style={{margin: "3% 0"}}><KeyboardBackspaceIcon /><span style={{fontSize: "1rem"}}>Back</span></button>
+
 
                 <button onClick={this.props.history.goBack}style={{margin: "3% 0"}}><KeyboardBackspaceIcon /><span style={{fontSize: "1rem"}}>Back</span></button>
 

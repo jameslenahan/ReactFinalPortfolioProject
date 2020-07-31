@@ -1,13 +1,12 @@
 export default (state = {
     song: null,
-    artist: "",
-    track: [],
-    artists: ""
+    favorite: 0,
+    reviews: [],
+    review: ""
 }, action) => {
     //console.log("SongReducer:", action.type, action.payload)
     switch(action.type) {
-        case 'ADD_SONG':
-            return {...state, songs: action.payload}
+
         case 'UPLOADING_SONG':
             return {...state, song: action.payload}
 
@@ -21,13 +20,13 @@ export default (state = {
             return {...state, favorite: action.payload}
 
         case 'LOADING_REVIEWS':
-            return {...state, artists: action.payload}
+            return {...state, reviews: action.payload}
 
         case 'RESET_FAVORITE_AND_REVIEWS':
             return {favorite: 0, reviews: []}
 
         case 'DISPLAY_REVIEW':
-            return {...state, artist: action.payload}
+            return {...state, review: action.payload}
 
         default:
             return state

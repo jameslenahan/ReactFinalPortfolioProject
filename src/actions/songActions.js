@@ -1,8 +1,19 @@
 export const sendingSongDetails = song => {
+
     const songData = {
-        track: song.track,
-        songId: song.id,
-        artist: song.artist
+
+        track: song.name,
+        songId: song.mbid,
+        artist: song.artist.name,
+        url: song.url,
+        duration: song.duration,
+        streamable: song.streamable,
+        listeners: song.listeners,
+        playcount: song.playcount,
+        album: song.album,
+        toptags: song.toptags,
+        wiki: song.wiki
+
     }
     return {
         type: 'UPLOADING_SONG',
@@ -37,7 +48,7 @@ export const resetFavoriteAndReview = () => {
     }
 }
 
-// Display single song that a user just typed
+
 export const displayReview = (review) => {
     return {
         type: 'DISPLAY_REVIEW',
@@ -50,13 +61,15 @@ export const songShow = (apiId, history) => {
 
     const API_KEY = 'c7833c4cc8e1895c2a7d5a947fb15518';
     return (dispatch) => {
-        fetch('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=${\'Beatles\'}&track=${cometogether}&format=json')
+        fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=Beatles&track=cometogether&format=json`)
             .then(resp => resp.json())
             .then(song => {
-                console.log(song)
-                dispatch(sendingSongDetails(song))
+
+
+                dispatch(sendingSongDetails(song.track))
                 history.push(`/songs/${song.id}`)
                 })
+
     }
 }
 
@@ -88,7 +101,7 @@ export const clickLike = (song, userId, review) => {
 
 
 export const loadingFavorite = (apiId) => {
-    const HEROKU_URL = 'https://limitless-woodland-46121.herokuapp.com/'
+    const HEROKU_URL = 'https://limitless-woodland-46121.herokuapp.com'
     return (dispatch) => {
         return fetch(`${HEROKU_URL}/api/v1/songs` ,{
             credentials: "include",
@@ -98,7 +111,7 @@ export const loadingFavorite = (apiId) => {
             },
         })
             .then(resp => resp.json())
-            .then(songs => { //console.log(songs)
+            .then(songs => {
                 songs.map(song => {
                     if (song.api_id === apiId) {
                         const numberOfLikes = song.favorites.filter(fav => fav.like).length
@@ -109,7 +122,7 @@ export const loadingFavorite = (apiId) => {
                             reviewArray.push({review: fav.review, username:fav.user_name})
                         })
 
-                        //console.log("reviewArray", reviewArray)
+
                         dispatch(settingFavorite(numberOfLikes))
                         dispatch(settingReviews(reviewArray))
                     } else {

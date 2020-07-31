@@ -14,8 +14,6 @@ export const clearCurrentUser = () => {
 }
 
 
-// asynchronous
-// create a new user
 export const signup = (userData, history) => {
     //console.log("action", userData)
     const HEROKU_URL = 'https://limitless-woodland-46121.herokuapp.com/'
