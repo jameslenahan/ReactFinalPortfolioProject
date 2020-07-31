@@ -9,6 +9,7 @@ export const uploadingFavorite = songs => {
 // My account page
 export const loadingUserInfo = (currentUserId) => {
     //const HEROKU_URL = process.env.REACT_APP_HEROKU
+    console.log(currentUserId)
     const HEROKU_URL = 'https://limitless-woodland-46121.herokuapp.com'
     return (dispatch) => {
         return fetch(`${HEROKU_URL}/api/v1/users/${currentUserId}` ,{

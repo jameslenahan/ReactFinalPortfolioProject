@@ -25,14 +25,41 @@ export const sendingSongs = songs => {
         const songsArr = Object.entries(songs)
         console.log(songsArr)
         songData = songsArr.map(song => {
+                return {
+                    track: song[0],
+                    //  artist: song[7][1] // need to have this work on the second iteration when you search. will show results then.
+                }
+                }
 
-            return {
-                track: song[0][0],
-                artist: song[7][1] // need to have this work on the second iteration when you search. will show results then.
 
-        }
+        )
+    }
+    return {
 
-        })
+        type: 'FETCH_SONGS',
+        payload: songData
+    }
+}
+export const sendingShowSongs = songs => {
+    let songData;
+
+    if (songs === 0) {
+        songData = null
+    }
+
+    else {
+
+
+        const songsArr = Object.entries(songs)
+        songData = songsArr.map(song => {
+                return {
+                    track: song[0],
+                    //  artist: song[7][1] // need to have this work on the second iteration when you search. will show results then.
+                }
+            }
+
+
+        )
     }
     return {
 
@@ -49,7 +76,7 @@ export const fetchSongs = () => {
         dispatch(loadingSongs())
         return fetch(`https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=beatles&track=cometogether&api_key=${API_KEY}&format=json`)
             .then(resp => resp.json())
-            .then(songCollections => dispatch(sendingSongs((songCollections.similartracks.track))))
+            .then(songCollections => dispatch(sendingShowSongs((songCollections.similartracks.track))))
     }
 }
 
