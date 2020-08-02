@@ -14,25 +14,39 @@ export const resetSongs = () => {
 
 export const sendingSongs = songs => {
     let songData;
-
-    if (songs === 0) {
+    if (songs.length === 0) {
         songData = null
     }
 
     else {
 
 
-        const songsArr = Object.entries(songs)
-        console.log(songsArr)
+      const songsArr = Object.entries(songs)
+       console.log(songsArr)
         songData = songsArr.map(song => {
-                return {
-                    track: song[0],
-                    //  artist: song[7][1] // need to have this work on the second iteration when you search. will show results then.
-                }
-                }
+            return {
+                artist: song[1],
+                track: song[0][0, 1, 2, 3]
 
-
+            }
+        }
         )
+
+
+   //         if (song[1] === song[1] instanceof Object)
+        //        return {
+     //               track: song[1].name
+      //          }
+    //        else
+       //         return {
+
+            //        track: song[1]
+                    //  artist: song[7][1] // need to have this work on the second iteration when you search. will show results then.
+           //     }
+
+
+
+
     }
     return {
 
@@ -51,9 +65,10 @@ export const sendingShowSongs = songs => {
 
 
         const songsArr = Object.entries(songs)
+        console.log(songsArr)
         songData = songsArr.map(song => {
                 return {
-                    track: song[0],
+                    track: song[1].name
                     //  artist: song[7][1] // need to have this work on the second iteration when you search. will show results then.
                 }
             }
