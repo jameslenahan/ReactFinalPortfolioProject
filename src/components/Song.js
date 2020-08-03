@@ -68,12 +68,12 @@ class Song extends Component {
                     </GridListTile>
                 </GridList>
 
-                <IconButton onClick={() => this.handleClick(this.props.song, this.props.userId, this.state.review)} style={{color: "#e91e63"}}><Fab style={{backgroundColor: "#f8bbd0", color: "#e91e63"}}><FavoriteBorderIcon /></Fab><span style={{fontSize: "1.2rem"}}>&nbsp;Love:&nbsp;{this.props.favorite}</span></IconButton>
+                <IconButton onClick={() => this.handleClick(this.props.song, this.props.userId, this.state.review)} style={{color: "#e91e63"}}><Fab style={{backgroundColor: "#f8bbd0", color: "#e91e63"}}><FavoriteBorderIcon /></Fab><span style={{fontSize: "1.2rem"}}>&nbsp;Like:&nbsp;{this.props.favorite}</span></IconButton>
 
                 <h3>Recommended reviews:</h3>
                 {this.props.reviews.length === 0 ? <p>Write a first review!</p> : this.props.reviews.map(review => <p><IconButton><MoodIcon /></IconButton>{review.review} by {review.username}</p>)}
 
-                <h5 style={{marginTop: "1%"}}><IconButton><EmojiEmotionsIcon /></IconButton>{this.props.review ? `${this.props.currentUser}: ${this.props.review}` : null}</h5>
+                <h5 style={{marginTop: "1%"}}><IconButton></IconButton>{this.props.review ? `${this.props.currentUser}: ${this.props.review}` : null}</h5>
 
                 <form onSubmit={(event) => this.handleSubmit(event, this.props.song, this.props.userId)}>
                     <TextField type="text" name="review" value={this.state.review} onChange={this.handleInputChange} label="Your Review"

@@ -5,14 +5,7 @@ export const sendingSongDetails = song => {
         track: song.name,
         songId: song.mbid,
         artist: song.artist.name,
-        url: song.url,
-        duration: song.duration,
-        streamable: song.streamable,
-        listeners: song.listeners,
-        playcount: song.playcount,
-        album: song.album,
-        toptags: song.toptags,
-        wiki: song.wiki
+
 
     }
     return {
@@ -26,6 +19,7 @@ export const incrementFavorite = () => {
         type: 'INCREMENT_FAVORITE',
     }
 }
+
 
 
 export const settingFavorite = (numberOfLikes) => {
