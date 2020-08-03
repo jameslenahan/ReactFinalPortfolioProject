@@ -22,6 +22,7 @@ export const sendingSongs = songs => {
         const songsArr = Object.values(songs);
         songData = songsArr.map(song => {
             song.forEach(song =>
+
             if (song[1] === Object) {
                 return song[1][1]
             } else
@@ -33,18 +34,6 @@ export const sendingSongs = songs => {
         )
         }
         )
-
-   //         if (song[1] === song[1] instanceof Object)
-        //        return {
-     //               track: song[1].name
-      //          }n
-    //        else
-       //         return {
-
-            //        track: song[1]
-                    //  artist: song[7][1] // need to have this work on the second iteration when you search. will show results then.
-           //     }
-
 
 
 
