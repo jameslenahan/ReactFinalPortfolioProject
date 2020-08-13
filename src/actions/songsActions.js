@@ -22,10 +22,10 @@ export const sendingSongs = songs => {
 
 
       const songsArr = Object.values(songs)
-            console.log((songsArr))
+            console.log((songsArr.name))
                 return {
-                    track: songsArr[0],
-                    artist: songsArr[6].name
+                    track: songsArr.name,
+                 //   artist: songsArr[6].name
 
             }
 
@@ -70,7 +70,7 @@ export const fetchSongs = () => {
     const API_KEY = 'c7833c4cc8e1895c2a7d5a947fb15518';
     return (dispatch) => {
         dispatch(loadingSongs())
-        return fetch(`https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=beatles&track=cometogether&api_key=${API_KEY}&format=json`)
+        return fetch(`https://api.musixmatch.com/ws/1.1/`)
             .then(resp => resp.json())
             .then(songCollections => dispatch(sendingShowSongs((songCollections.similartracks.track))))
     }
@@ -84,7 +84,7 @@ export const searchSongs = (state) => {
 
     return (dispatch) => {
         dispatch(loadingSongs())
-        return fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=${artist}&track=${track}&format=json`)
+        return fetch(`https://api.musixmatch.com/ws/1.1/`)
             .then(resp => resp.json())
             .then(songs =>
 
