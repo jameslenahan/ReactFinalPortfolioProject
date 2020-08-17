@@ -72,7 +72,7 @@ export const fetchSongs = () => {
         dispatch(loadingSongs())
         return fetch(`https://api.musixmatch.com/ws/1.1/`)
             .then(resp => resp.json())
-            .then(songCollections => dispatch(sendingShowSongs((songCollections.similartracks.track))))
+            .then(songCollections => dispatch(sendingShowSongs((songCollections.track))))
     }
 }
 
