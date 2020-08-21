@@ -1,5 +1,4 @@
 export const sendingSongDetails = song => {
-
     const songData = {
 
         track: song.name,

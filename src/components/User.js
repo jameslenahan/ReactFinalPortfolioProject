@@ -15,7 +15,7 @@ class User extends Component {
     render() {
         const user = this.props.user
         const songs = this.props.songs
-        console.log("checkit", this.props.songs)
+
 
 
         let favoriteText;

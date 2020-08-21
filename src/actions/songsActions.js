@@ -1,5 +1,4 @@
 
-const baseURL ="https://limitless-woodland-46121.herokuapp.com/api/v1/songs"
 export const loadingSongs = () => {
     return {
         type: 'LOADING_SONGS'
@@ -20,15 +19,22 @@ export const sendingSongs = songs => {
 
     else {
 
+        console.log(songs)
+        songData = songs.forEach(song => {
+            console.log(song.mbid)
+            return {
+                track: song.name,
+                artist: song.artist.name,
+                songId: song.mbid,
 
-      const songsArr = Object.values(songs)
-            console.log((songsArr.name))
-                return {
-                    track: songsArr.name,
-                 //   artist: songsArr[6].name
+
+
 
             }
+            }
 
+
+        )
     }
     return {
 
@@ -36,6 +42,7 @@ export const sendingSongs = songs => {
         payload: songData
     }
 }
+
 export const sendingShowSongs = songs => {
     let songData;
 
@@ -44,13 +51,10 @@ export const sendingShowSongs = songs => {
     }
 
     else {
-
-
         const songsArr = Object.entries(songs)
         songData = songsArr.map(song => {
                 return {
                     track: song[1].name
-                    //  artist: song[7][1] // need to have this work on the second iteration when you search. will show results then.
                 }
             }
 
@@ -70,9 +74,9 @@ export const fetchSongs = () => {
     const API_KEY = 'c7833c4cc8e1895c2a7d5a947fb15518';
     return (dispatch) => {
         dispatch(loadingSongs())
-        return fetch(`https://api.musixmatch.com/ws/1.1/`)
+        return fetch(`https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=beatles&track=cometogether&api_key=${API_KEY}&format=json`)
             .then(resp => resp.json())
-            .then(songCollections => dispatch(sendingShowSongs((songCollections.track))))
+            .then(songCollections => dispatch(sendingShowSongs((songCollections.similartracks.track))))
     }
 }
 
@@ -84,10 +88,10 @@ export const searchSongs = (state) => {
 
     return (dispatch) => {
         dispatch(loadingSongs())
-        return fetch(`https://api.musixmatch.com/ws/1.1/`)
+        return fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${API_KEY}&artist=${artist}&track=${track}&format=json`)
             .then(resp => resp.json())
             .then(songs =>
 
-                dispatch(sendingSongs(console.log(songs.track))))
+                dispatch(sendingSongs(songs.track)))
     }
 }
